@@ -428,7 +428,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 			</div>
 			<?php } ?>
 			<div class="<?php echo $input_submit_class; ?>">
-			<input class="submit <?php if ( get_sub_field("sp-bg-color") ==="orange" ) echo "blue";?>"	type="submit" value="<?php echo $actionk_submit; ?>">
+			<input class="submit <?php if ( get_sub_field("sp-bg-color") ==="orange" ) echo "blue";?>"	type="submit" value="<?php echo $actionk_submit; ?>" onClick="ga('send','event', {eventCategory: 'email', eventAction: 'signup', eventLabel: <?php echo $akpage; ?>'});" >
 			</div>
 		</form>
 		<?php } ?>
