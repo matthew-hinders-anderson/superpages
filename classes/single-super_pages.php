@@ -103,14 +103,14 @@ if (have_posts()) : while (have_posts()) : the_post();
 				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
 			</div>
 
-		<?php elseif(get_row_layout() == "sp-section-ticker") : ?>
+		<?php /* elseif(get_row_layout() == "sp-section-ticker") : ?>
 		
 			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> id="news-ticker">
 				<div class="section-inner code-inner <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<?php if(function_exists('ditty_news_ticker')){ditty_news_ticker(3256);} ?>
 				</div>
 				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
-			</div>
+			</div> */ ?>
 
 		<?php elseif(get_row_layout() == "sp-section-actionkit") : ?>
 		

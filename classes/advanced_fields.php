@@ -946,7 +946,7 @@ if ( function_exists( "register_field_group" ) )
 							$sp_id,
 						),
 					),
-					array (
+					/* array (
 						'label' => 'Ticker',
 						'name' => 'sp-section-ticker',
 						'display' => 'row',
@@ -979,7 +979,7 @@ if ( function_exists( "register_field_group" ) )
 							$sp_margins,
 							$sp_id,
 						),
-					),
+					),*/
 				),
 				'button_label' => 'Add Row',
 				'min' => '',
