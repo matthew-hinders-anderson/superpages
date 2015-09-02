@@ -709,18 +709,18 @@ if ( function_exists( "register_field_group" ) )
 						),
 					),
 					array (
-						'label' => 'ActionKit Page Shortname (required)',
+						'label' => 'ActionKit',
 						'name' => 'sp-section-actionkit',
-						'instructions' => 'Controls which ActionKit page data is submitted to.',
 						'display' => 'row',
 						'min' => '',
 						'max' => '',
 						'sub_fields' => array (
 							array (
 								'key' => 'field_539b29874c444',
-								'label' => 'ActionKit',
+								'label' => 'ActionKit Page Shortname (required)',
 								'name' => 'sp-section-actionkit',
 								'type' => 'text',
+								'instructions' => 'Controls which ActionKit page data is submitted to.',
 								'column_width' => '',
 								'default_value' => '',
 								'placeholder' => '',
