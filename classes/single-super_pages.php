@@ -27,8 +27,6 @@ if (have_posts()) : while (have_posts()) : the_post();
 				$spBgImgUrl = $spBgImgArray[0];
 		?>
 		body{
-			background:transparent !important;}
-		#container{
 			background-image:url('<?php echo $spBgImgUrl; ?>') !important;
 			background-size:cover;}
 		<?php 
@@ -105,17 +103,18 @@ if (have_posts()) : while (have_posts()) : the_post();
 				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
 			</div>
 
-		<?php elseif(get_row_layout() == "sp-section-ticker") : ?>
+		<?php /* elseif(get_row_layout() == "sp-section-ticker") : ?>
 		
 			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> id="news-ticker">
 				<div class="section-inner code-inner <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<?php if(function_exists('ditty_news_ticker')){ditty_news_ticker(3256);} ?>
 				</div>
 				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
-			</div>
+			</div> */ ?>
+
 		<?php elseif(get_row_layout() == "sp-section-actionkit") : ?>
 		
-			<div id="action-kit" <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section action-kit <?php echo $classes; ?>" id="<?php echo $id; ?>">
+			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section action-kit <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<div id="action-kit-inner" class="section-inner code-inner">
 					<h3 style="text-align:center;"><strong><?php echo get_sub_field('sp-actionkit-title'); ?></strong></h3>
 			<?php $akpage = get_sub_field( 'sp-section-actionkit' ); ?>
@@ -430,7 +429,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 			</div>
 			<?php } ?>
 			<div class="<?php echo $input_submit_class; ?>">
-			<input class="submit <?php if ( get_sub_field("sp-bg-color") ==="orange" ) echo "blue";?>"	type="submit" value="<?php echo $actionk_submit; ?>">
+			<input class="submit <?php if ( get_sub_field("sp-bg-color") ==="orange" ) echo "blue";?>"	type="submit" value="<?php echo $actionk_submit; ?>" onClick="ga('send','event', {eventCategory: 'email', eventAction: 'superpage-action', eventLabel: <?php echo $akpage; ?>'});" >
 			</div>
 		</form>
 		<?php } ?>
@@ -470,45 +469,6 @@ if (have_posts()) : while (have_posts()) : the_post();
 			</div>
 			<?php wp_reset_postdata(); ?>
 			<?php endif; ?>
-		<?php elseif(get_row_layout() == "sp-section-partners") : ?>
-			<?php 
-				$partner_args = array(
-					'posts_per_page' => -1,
-					'post_type' => 'partner',
-					'nopaging' => true,
-					'order' => 'asc',
-					'orderby' => 'name',
-				);
-				$partner_args = new WP_query($partner_args);
-			?>
-			<?php if ($partner_args->have_posts()) : ?>
-			<div id="<?php echo $id; ?>" <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section partners <?php echo $classes; ?>">
-				<div id="partners-inner" class="section-inner partners-inner">
-					<h3 class="section-title"><?php echo get_sub_field('sp-section-title'); ?></h3>
-					<div class="section-content"><?php the_sub_field("sp-section-content"); ?></div>
-				</div>
-				<div id="partners-list-wrapper">
-					<a id="pl-expand"><?php the_sub_field("sp-section-partners-expand-label"); ?></a>
-					<div id="pl-container">
-						<ul id="partners-list" class="no-bullet">
-						<?php 
-							while ($partner_args->have_posts()) : $partner_args->the_post(); 
-							$partnerURL = get_field('partner_website_url');	
-						?>
-								<li><?php if ( $partnerURL ){?><a href="<?php echo $partnerURL; ?>" target="_blank"><?php } ?><?php the_title(); ?><?php if ( $partnerURL ){?></a><?php } ?></li>
-						<?php endwhile; ?>
-						</ul>
-					</div>
-				</div>
-				<script>
-					jQuery(document).ready(function(){
-						jQuery('#pl-expand').expandoLink('pl-container');
-					});
-				</script>
-				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
-			</div>
-			<?php wp_reset_postdata(); ?>
-			<?php endif; ?>
 		<?php elseif(get_row_layout() == "sp-section-grid") : ?>
 			<?php $columns = get_sub_field('grid-square-columns'); ?>
 			<?php 
@@ -526,9 +486,9 @@ if (have_posts()) : while (have_posts()) : the_post();
 				    	<a rel="image_grid" href="<?php ( the_sub_field('grid-square-link') ) ? the_sub_field('grid-square-link') : $grid_img_full[0]; ?>" class="<?php echo ( the_sub_field('grid-square-link') == '' ) ? "fancybox": ''; ?>">
 				    		<span class="img-grid-square-img">
 				    			
-								<img data-src="<?php echo $grid_img_full[0] ?>" class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
+								<img data-src="<?php echo $grid_img[0] ?>" class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
 								<noscript>
-									<img class="img-grid-square-nojs-image" src="<?php echo $grid_img_full[0] ?>"/>
+									<img class="img-grid-square-nojs-image" src="<?php echo $grid_img[0] ?>"/>
 								</noscript>
 				    		</span>
 				    		<?php if (get_sub_field('grid-square-title')): ?>

@@ -10,7 +10,7 @@ $sp_actionkit_title = array (
 	'label' => 'Title:',
 	'name' => 'sp-actionkit-title',
 	'type' => 'text',
-	'instructions' => 'Required.',
+	'instructions' => '',
 	'column_width' => '',
 	'default_value' => '',
 	'placeholder' => '',
@@ -23,8 +23,8 @@ $sp_actionkit_intro = array (
 	'key' => 'field_549704ed2d912',
 	'label' => 'Introductory Text:',
 	'name' => 'sp-actionkit-intro',
-	'type' => 'textarea',
-	'instructions' => 'Required.',
+	'type' => 'wysiwyg',
+	'instructions' => '',
 	'column_width' => '',
 	'default_value' => '',
 	'placeholder' => '',
@@ -38,7 +38,7 @@ $sp_actionkit_submit = array (
 	'label' => 'Submit Button Text:',
 	'name' => 'sp-actionkit-submit',
 	'type' => 'text',
-	'instructions' => 'Required.',
+	'instructions' => '',
 	'column_width' => '',
 	'default_value' => 'Sign Up',
 	'placeholder' => '',
@@ -52,7 +52,7 @@ $sp_actionkit_confirmation = array (
 	'label' => 'Confirmation Message:',
 	'name' => 'sp-actionkit-confirmation',
 	'type' => 'textarea',
-	'instructions' => 'Required.',
+	'instructions' => 'Replaces the form once data is successfully submitted.',
 	'column_width' => '',
 	'default_value' => 'Thank You for Signing Up!',
 	'placeholder' => '',
@@ -64,10 +64,10 @@ $sp_actionkit_confirmation = array (
 
 $sp_actionkit_custom = array (
 	'key' => 'field_549704ed2d923',
-	'label' => 'Custom HTML:',
+	'label' => 'Custom Field HTML:',
 	'name' => 'sp-actionkit-custom',
-	'type' => 'wysiwyg',
-	'instructions' => '',
+	'type' => 'textarea',
+	'instructions' => 'HTML for additional custom input fields.',
 	'column_width' => '',
 	'default_value' => '',
 	'placeholder' => '',
@@ -489,9 +489,10 @@ $sp_bg_img_attach = array (
 	'column_width' => '',
 	'choices' => array (
 		'scroll' => 'Normal',
+		'fixed' => 'Fixed',
 		'parallax' => 'Parallax'
 	),
-	'default_value' => 'parallax',
+	'default_value' => 'scroll',
 	'allow_null' => 0,
 	'multiple' => 0,
 );
@@ -716,9 +717,10 @@ if ( function_exists( "register_field_group" ) )
 						'sub_fields' => array (
 							array (
 								'key' => 'field_539b29874c444',
-								'label' => 'ActionKit',
+								'label' => 'ActionKit Page Shortname (required)',
 								'name' => 'sp-section-actionkit',
 								'type' => 'text',
+								'instructions' => 'Controls which ActionKit page data is submitted to.',
 								'column_width' => '',
 								'default_value' => '',
 								'placeholder' => '',
@@ -946,7 +948,7 @@ if ( function_exists( "register_field_group" ) )
 							$sp_id,
 						),
 					),
-					array (
+					/* array (
 						'label' => 'Ticker',
 						'name' => 'sp-section-ticker',
 						'display' => 'row',
@@ -979,7 +981,7 @@ if ( function_exists( "register_field_group" ) )
 							$sp_margins,
 							$sp_id,
 						),
-					),
+					),*/
 				),
 				'button_label' => 'Add Row',
 				'min' => '',

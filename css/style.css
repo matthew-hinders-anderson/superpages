@@ -50,6 +50,9 @@
 .bg-repeat-both{
 	background-repeat:both;}
 
+.bg-attach-fixed{
+	background-attachment:fixed;}
+
 .bg-image-on{
 	background-color:transparent !important;}
 
