@@ -111,9 +111,10 @@ if (have_posts()) : while (have_posts()) : the_post();
 				</div>
 				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
 			</div>
+
 		<?php elseif(get_row_layout() == "sp-section-actionkit") : ?>
 		
-			<div id="action-kit" <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section action-kit <?php echo $classes; ?>" id="<?php echo $id; ?>">
+			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section action-kit <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<div id="action-kit-inner" class="section-inner code-inner">
 					<h3 style="text-align:center;"><strong><?php echo get_sub_field('sp-actionkit-title'); ?></strong></h3>
 			<?php $akpage = get_sub_field( 'sp-section-actionkit' ); ?>
@@ -428,7 +429,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 			</div>
 			<?php } ?>
 			<div class="<?php echo $input_submit_class; ?>">
-			<input class="submit <?php if ( get_sub_field("sp-bg-color") ==="orange" ) echo "blue";?>"	type="submit" value="<?php echo $actionk_submit; ?>" onClick="ga('send','event', {eventCategory: 'email', eventAction: 'signup', eventLabel: <?php echo $akpage; ?>'});" >
+			<input class="submit <?php if ( get_sub_field("sp-bg-color") ==="orange" ) echo "blue";?>"	type="submit" value="<?php echo $actionk_submit; ?>" onClick="ga('send','event', {eventCategory: 'email', eventAction: 'superpage-action', eventLabel: <?php echo $akpage; ?>'});" >
 			</div>
 		</form>
 		<?php } ?>
