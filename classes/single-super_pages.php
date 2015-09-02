@@ -5,8 +5,9 @@
 */
 get_header(); 
 
-if (have_posts()) : while (have_posts()) : the_post(); ?>
-
+if (have_posts()) : while (have_posts()) : the_post(); 
+// post_password_required adds support for Password protection
+	if ( !post_password_required() ){ ?>
 <section id="content" class="superpage">
 	<style>
 		<?php 
@@ -578,6 +579,16 @@ if (have_posts()) : while (have_posts()) : the_post(); ?>
 </section>
 
 <?php 
+} else { 
+// if password protect is enabled, get the pw form ?>
+		<section id="content" class="box-white section">
+			<div class="section-inner">
+				<?php
+					echo get_the_password_form();
+				?>
+			</div>
+		</section>
+<?php }
 
 endwhile; 
 
