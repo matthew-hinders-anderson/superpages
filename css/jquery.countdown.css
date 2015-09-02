@@ -1,0 +1,21 @@
+.countdownHolder{
+	width:auto;
+	text-align:center;
+	background:none !important;
+}
+.countdown {
+	width:100%;
+	background:#fff !important;
+}
+.countdown th {
+	background:#fff !important;
+	color:#000 !important;
+	font: 20px/1.5 'Open Sans Condensed',sans-serif !important;
+	border:1px solid #000;
+}
+.countdown td {
+	background:#000 !important;
+	color:#fff !important;
+	font: 40px/1.5 'Open Sans Condensed',sans-serif !important;
+	border:1px solid #fff;
+}
