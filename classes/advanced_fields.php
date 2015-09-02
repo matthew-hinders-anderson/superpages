@@ -489,9 +489,10 @@ $sp_bg_img_attach = array (
 	'column_width' => '',
 	'choices' => array (
 		'scroll' => 'Normal',
+		'fixed' => 'Fixed',
 		'parallax' => 'Parallax'
 	),
-	'default_value' => 'parallax',
+	'default_value' => 'Normal',
 	'allow_null' => 0,
 	'multiple' => 0,
 );
