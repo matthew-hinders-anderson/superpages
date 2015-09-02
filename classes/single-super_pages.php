@@ -485,9 +485,9 @@ if (have_posts()) : while (have_posts()) : the_post();
 				    	<a rel="image_grid" href="<?php ( the_sub_field('grid-square-link') ) ? the_sub_field('grid-square-link') : $grid_img_full[0]; ?>" class="<?php echo ( the_sub_field('grid-square-link') == '' ) ? "fancybox": ''; ?>">
 				    		<span class="img-grid-square-img">
 				    			
-								<img data-src="<?php echo $grid_img_full[0] ?>" class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
+								<img data-src="<?php echo $grid_img[0] ?>" class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
 								<noscript>
-									<img class="img-grid-square-nojs-image" src="<?php echo $grid_img_full[0] ?>"/>
+									<img class="img-grid-square-nojs-image" src="<?php echo $grid_img[0] ?>"/>
 								</noscript>
 				    		</span>
 				    		<?php if (get_sub_field('grid-square-title')): ?>
