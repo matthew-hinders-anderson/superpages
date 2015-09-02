@@ -27,8 +27,6 @@ if (have_posts()) : while (have_posts()) : the_post();
 				$spBgImgUrl = $spBgImgArray[0];
 		?>
 		body{
-			background:transparent !important;}
-		#container{
 			background-image:url('<?php echo $spBgImgUrl; ?>') !important;
 			background-size:cover;}
 		<?php 
@@ -466,45 +464,6 @@ if (have_posts()) : while (have_posts()) : the_post();
 					<p class="button"><?php next_posts_link('Older Posts', $posts_query->max_num_pages); ?></p>
 					<br class="clear">
 				</div>
-				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
-			</div>
-			<?php wp_reset_postdata(); ?>
-			<?php endif; ?>
-		<?php elseif(get_row_layout() == "sp-section-partners") : ?>
-			<?php 
-				$partner_args = array(
-					'posts_per_page' => -1,
-					'post_type' => 'partner',
-					'nopaging' => true,
-					'order' => 'asc',
-					'orderby' => 'name',
-				);
-				$partner_args = new WP_query($partner_args);
-			?>
-			<?php if ($partner_args->have_posts()) : ?>
-			<div id="<?php echo $id; ?>" <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section partners <?php echo $classes; ?>">
-				<div id="partners-inner" class="section-inner partners-inner">
-					<h3 class="section-title"><?php echo get_sub_field('sp-section-title'); ?></h3>
-					<div class="section-content"><?php the_sub_field("sp-section-content"); ?></div>
-				</div>
-				<div id="partners-list-wrapper">
-					<a id="pl-expand"><?php the_sub_field("sp-section-partners-expand-label"); ?></a>
-					<div id="pl-container">
-						<ul id="partners-list" class="no-bullet">
-						<?php 
-							while ($partner_args->have_posts()) : $partner_args->the_post(); 
-							$partnerURL = get_field('partner_website_url');	
-						?>
-								<li><?php if ( $partnerURL ){?><a href="<?php echo $partnerURL; ?>" target="_blank"><?php } ?><?php the_title(); ?><?php if ( $partnerURL ){?></a><?php } ?></li>
-						<?php endwhile; ?>
-						</ul>
-					</div>
-				</div>
-				<script>
-					jQuery(document).ready(function(){
-						jQuery('#pl-expand').expandoLink('pl-container');
-					});
-				</script>
 				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
 			</div>
 			<?php wp_reset_postdata(); ?>
