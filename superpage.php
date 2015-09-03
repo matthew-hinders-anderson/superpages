@@ -6,7 +6,7 @@ Description: Super Pages Plugin
 Version: 1.1.4
 Author: Wali Hassan, Matthew Anderson
 Author URI: http://walihassan.com
-GitHub Plugin URI: https://github.com/walihassanjafferi/SuperPages/
+GitHub Plugin URI: https://github.com/matthew-350/superpages
 GitHub Branch: master
 */
 // Define urls/paths that will be used throughout the plugin
