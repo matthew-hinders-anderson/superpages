@@ -8,7 +8,26 @@
 /* Check for site_colors option, use default 350 colors if not present */
 $site_colors_json = get_option('site_colors');
 if ( $site_colors_json ){
+	/* json_decode doesn't work on WPEngine's PHP v4.x :((
 	$sp_colors = json_decode( $site_colors_json, true);
+	... so do it the old-fashioned way: */
+	$sp_colors = array();
+	// break the string by comma
+	$colors = explode(',', $site_colors);
+	// iterate through the lines.
+	foreach( $colors as $color )
+	{ 
+	    // just make sure that the line's whitespace is cleared away
+	    $color = trim( $color );
+	    if( $color ) 
+	    {
+	        // break the line at the colon
+	        $pieces = explode( ":", $color );
+	        // the first piece now serves as the index. 
+	        // The second piece as the value.
+	        $sp_colors[ $pieces[ 0 ] ] = $pieces[ 1 ];
+	    }
+	}
 } else {
 	$sp_colors = array (
 		'white' => 'White',
