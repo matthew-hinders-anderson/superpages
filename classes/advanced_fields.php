@@ -13,7 +13,7 @@ if ( $site_colors_json ){
 	... so do it the old-fashioned way: */
 	$sp_colors = array();
 	// break the string by comma
-	$colors = explode(',', $site_colors);
+	$colors = explode(',', $site_colors_json);
 	// iterate through the lines.
 	foreach( $colors as $color )
 	{ 
