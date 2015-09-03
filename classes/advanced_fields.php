@@ -5,6 +5,21 @@
 *
 */
 
+/* Check for site_colors option, use default 350 colors if not present */
+$site_colors_json = get_option('site_colors');
+if ( $site_colors_json ){
+	$sp_colors = json_decode( $site_colors_json, true);
+} else {
+	$sp_colors = array (
+		'white' => 'White',
+		'orange' => 'Orange',
+		'blue' => 'Blue',
+		'ltgray' => 'Light Gray',
+		'dkgray' => 'Dark Gray',
+		'-' => 'Transparent',
+	);
+}
+
 $sp_actionkit_title = array (
 	'key' => 'field_549704ed2d911',
 	'label' => 'Title:',
@@ -350,15 +365,6 @@ $sp_actionkit_horizontal = array (
 		'true' => 'Check to Make Form Horizontal',
 	),
 	'default_value' => '',
-);
-
-$sp_colors = array (
-	'white' => 'White',
-	'orange' => 'Orange',
-	'ltblue' => 'Light Blue',
-	'dkblue' => 'Dark Blue',
-	'dkgray' => 'Dark Gray',
-	'-' => 'Transparent',
 );
 
 $sp_default_bg_choice_key = 'field_5474d5edc0b0a';
