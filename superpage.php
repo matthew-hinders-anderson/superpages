@@ -117,6 +117,48 @@ class SuperPages_Class {
 		register_post_type( 'super_pages', $args );	
 
 	}
+	// Create superpage taxonomies
+function create_superpage_taxonomies() {
+	// Add new taxonomy, NOT hierarchical (like tags)
+	$labels = array(
+		'name'                       => _x( 'Display Locations', 'taxonomy general name' ),
+		'singular_name'              => _x( 'Display Location', 'taxonomy singular name' ),
+		'search_items'               => __( 'Search Display Location' ),
+		'popular_items'              => __( 'Popular Display Locations' ),
+		'all_items'                  => __( 'All Display Locations' ),
+		'parent_item'                => null,
+		'parent_item_colon'          => null,
+		'edit_item'                  => __( 'Edit Display Location' ),
+		'update_item'                => __( 'Update Display Location' ),
+		'add_new_item'               => __( 'Add New Display Location' ),
+		'new_item_name'              => __( 'New Display Location Name' ),
+		'separate_items_with_commas' => __( 'Separate locations with commas' ),
+		'add_or_remove_items'        => __( 'Add or remove locations' ),
+		'choose_from_most_used'      => __( 'Choose from the most used locations' ),
+		'not_found'                  => __( 'No display locations found.' ),
+		'menu_name'                  => __( 'Display Locations' ),
+	);
+
+	$args = array(
+		'hierarchical'          => false,
+		'labels'                => $labels,
+		'show_ui'               => true,
+		'show_admin_column'     => true,
+		'update_count_callback' => '_update_post_term_count',
+		'query_var'             => true,
+		'rewrite'               => array( 'slug' => 'display-location' ),
+	);
+
+	register_taxonomy( 'display-location', 'superpage', $args );
+}
+add_action( 'init', 'create_superpage_taxonomies', 0 );
+
+
+// Pre-add 'Homepage' as an option, so people don't forget/mis-enter it
+function add_homepage_display_location(){
+	wp_insert_term( 'Homepage', 'display-location', array('description'=> 'Display this content on the homepage. If more than one superpage is marked, the newer one is displayed.','slug' => 'homepage'));
+}
+add_action( 'init', 'add_homepage_display_location', 0 );
 	
 	public function sp_single_template( $single ) {
 	
