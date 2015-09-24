@@ -25,6 +25,8 @@ class SuperPages_Class {
 		add_filter( 'post_type_link', array ( $this, 'df_custom_post_type_link') , 10, 2 );
 		add_action( 'init', array ( $this, 'df_custom_rewrite_rule' ) );		
 		add_action( 'wp_head', array ( $this, 'into_head' ) );	
+		add_action( 'init', array( $this, 'create_superpage_taxonomies') , 0 );
+		add_action( 'init', array( $this, 'add_homepage_display_location') , 0 );
 		
 	}
 	
@@ -102,16 +104,17 @@ class SuperPages_Class {
 			'exclude_from_search' => false,
 			'show_ui'            => true,
 			'show_in_menu'       => true,
+			'menu_position'		 => 4,
 			'query_var'          => true,
 			'rewrite' 			 => apply_filters( 'sp_superpages_posttype_rewrite_args', array( 'slug' => false, 'with_front' => true) ),
 			'capability_type'    => 'page',
 			'has_archive'        => true,
 			'hierarchical'       => false,
 			'can_export' 	     => true,
-			'menu_icon'			 => 'dashicons-schedule',
+			'menu_icon'			 => 'dashicons-align-center',
 			'menu_position'      => null,
 			'supports'			 => array('title', 'custom-fields', 'revisions'),
-			'taxonomies'		 => array( 'category')
+			'taxonomies'		 => array( 'display-location')
 		);
 
 		register_post_type( 'super_pages', $args );	
@@ -149,16 +152,16 @@ function create_superpage_taxonomies() {
 		'rewrite'               => array( 'slug' => 'display-location' ),
 	);
 
-	register_taxonomy( 'display-location', 'superpage', $args );
+	register_taxonomy( 'display-location', 'super_pages', $args );
 }
-add_action( 'init', 'create_superpage_taxonomies', 0 );
+
 
 
 // Pre-add 'Homepage' as an option, so people don't forget/mis-enter it
 function add_homepage_display_location(){
 	wp_insert_term( 'Homepage', 'display-location', array('description'=> 'Display this content on the homepage. If more than one superpage is marked, the newer one is displayed.','slug' => 'homepage'));
 }
-add_action( 'init', 'add_homepage_display_location', 0 );
+
 	
 	public function sp_single_template( $single ) {
 	

@@ -83,7 +83,10 @@ if (have_posts()) : while (have_posts()) : the_post();
 		$bg_img_repeat = get_sub_field('sp-bg-image-repeat');
 		$bg_img_credit = get_sub_field('sp-bg-image-credit');
 		$bg_img_credit_url = get_sub_field('sp-bg-image-credit-url');
-		$classes = "box-" . $bgcolor . " bg-repeat-" . $bg_img_repeat . " bg-image-" . $bg_img_status . " bg-attach-" . $bg_img_attach . " bg-size-". $bg_img_size . " width-" . $width . " padding-" . $padding;
+		if ( get_sub_field('sp-notch') ){
+			//$notch_class = 'notch';
+		}
+		$classes = "bg-" . $bgcolor . " bg-repeat-" . $bg_img_repeat . " bg-image-" . $bg_img_status . " bg-attach-" . $bg_img_attach . " bg-size-". $bg_img_size . " width-" . $width . " padding-" . $padding . " " . $notch_class;
 
 		if(get_row_layout() == "sp-section-texthtml"): // layout: Text/HTML ?>
 			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section text-html <?php echo $classes; ?>" id="<?php echo $id; ?>">
@@ -114,7 +117,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 
 		<?php elseif(get_row_layout() == "sp-section-actionkit") : ?>
 		
-			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section action-kit <?php echo $classes; ?>" id="<?php echo $id; ?>">
+			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section actionkit <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<div id="action-kit-inner" class="section-inner code-inner">
 					<h3 style="text-align:center;"><strong><?php echo get_sub_field('sp-actionkit-title'); ?></strong></h3>
 			<?php $akpage = get_sub_field( 'sp-section-actionkit' ); ?>
