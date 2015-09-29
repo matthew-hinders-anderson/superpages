@@ -22,7 +22,10 @@ class SuperPages_Class {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_superpages_style' ) );
 		add_action( 'init', array ( $this, 'add_superpage_type' ) );
 		add_filter( 'single_template', array( $this, 'sp_single_template' ) );
-		add_filter( 'post_type_link', array ( $this, 'df_custom_post_type_link') , 10, 2 );
+		// add_filter( 'post_type_link', array ( $this, 'df_custom_post_type_link') , 10, 2 );
+		// older permalink hooks
+		add_filter( 'post_type_link',  array( $this, 'custom_remove_cpt_slug_two'), 10, 2 );
+		add_action( 'pre_get_posts', 'custom_parse_request_tricksy_two' );
 		add_action( 'init', array ( $this, 'df_custom_rewrite_rule' ) );		
 		add_action( 'wp_head', array ( $this, 'into_head' ) );	
 		add_action( 'init', array( $this, 'create_superpage_taxonomies') , 0 );
@@ -217,19 +220,19 @@ function add_homepage_display_location(){
 	 */
 	function custom_remove_cpt_slug_two( $post_link, $post, $leavename ) {
 	 
-	    if ( 'super_page' != $post->post_type || 'publish' != $post->post_status ) {
+	    if ( 'super_pages' != $post->post_type || 'publish' != $post->post_status ) {
 	        return $post_link;
 	    }
-	 	$current_blog;
+	 	global $current_blog;
 		//$raw_blog_path = $current_blog->path;
 		//trim the leading slash off
 		//$blog_path = substr($raw_blog_path, 1, -1);
 	    //$post_link = str_replace( $raw_blog_path . $post->post_type . '/', $raw_blog_path , $post_link );
 		$post_link = str_replace( '/' . $post->post_type . '/', '/' , $post_link );
 	 
-	    return $post_link; global
+	    return $post_link; 
 	}
-	add_filter( 'post_type_link', 'custom_remove_cpt_slug_two', 10, 3 );
+	
 
 	/**
 	 * Some hackery to have WordPress match postname to any of our public post types
@@ -252,7 +255,7 @@ function add_homepage_display_location(){
 	        $query->set( 'post_type', array( 'post', 'super_pages', 'page' ) );
 	    }
 	}
-	add_action( 'pre_get_posts', 'custom_parse_request_tricksy_two' );
+
 	
 }
 $SuperPages = new SuperPages_Class();
