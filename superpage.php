@@ -181,9 +181,9 @@ function add_homepage_display_location(){
 	}
 	
 
-	/**
-	 * Remove the slug from published post permalinks.
-	 */
+	/* ****** This is Wali's permalink code — breaks all non-superpage permalinks ******
+	  Remove the slug from published post permalinks.
+	  
 	public function df_custom_post_type_link( $post_link, $id = 0 ) {  
 
 		$post = get_post( $id );  
@@ -194,20 +194,65 @@ function add_homepage_display_location(){
 
 		return home_url( user_trailingslashit( "$post->post_name" ) );  
 	}
+	*/
 
+	/*
+	 * Some hackery to have WordPress match postname to any of our public post types
+	 * All of our public post types can have /post-name/ as the slug, so they better be unique across all posts
+	 * Typically core only accounts for posts and pages where the slug is /post-name/
+	 *
+	public function df_custom_rewrite_rule() {
+    
+		add_rewrite_rule( '(.*?)$', 'index.php?super_pages=$matches[1]', 'top' );
+	
+	}
+
+	// Original, older permalink rewrite code
+
+	*/
+	//Some URL hackin' shit - To get custom post types to not use a slug, i.e. '350.org/my-custom-post', not '350.org/custom-post-type/my-custom-post'
+
+	/**
+	 * Remove the slug from published post permalinks.
+	 */
+	function custom_remove_cpt_slug_two( $post_link, $post, $leavename ) {
+	 
+	    if ( 'super_page' != $post->post_type || 'publish' != $post->post_status ) {
+	        return $post_link;
+	    }
+	 	$current_blog;
+		//$raw_blog_path = $current_blog->path;
+		//trim the leading slash off
+		//$blog_path = substr($raw_blog_path, 1, -1);
+	    //$post_link = str_replace( $raw_blog_path . $post->post_type . '/', $raw_blog_path , $post_link );
+		$post_link = str_replace( '/' . $post->post_type . '/', '/' , $post_link );
+	 
+	    return $post_link; global
+	}
+	add_filter( 'post_type_link', 'custom_remove_cpt_slug_two', 10, 3 );
 
 	/**
 	 * Some hackery to have WordPress match postname to any of our public post types
 	 * All of our public post types can have /post-name/ as the slug, so they better be unique across all posts
 	 * Typically core only accounts for posts and pages where the slug is /post-name/
 	 */
-	public function df_custom_rewrite_rule() {
-    
-		add_rewrite_rule( '(.*?)$', 'index.php?super_pages=$matches[1]', 'top' );
-	
+	function custom_parse_request_tricksy_two( $query ) {
+	 
+	    // Only noop the main query
+	    if ( ! $query->is_main_query() )
+	        return;
+	 
+	    // Only noop our very specific rewrite rule match
+	    if ( 2 != count( $query->query ) || ! isset( $query->query['page'] ) ) {
+	        return;
+	    }
+	 
+	    // 'name' will be set if post permalinks are just post_name, otherwise the page rule will match
+	    if ( ! empty( $query->query['name'] ) ) {
+	        $query->set( 'post_type', array( 'post', 'super_pages', 'page' ) );
+	    }
 	}
-	
-	
+	add_action( 'pre_get_posts', 'custom_parse_request_tricksy_two' );
 	
 }
 $SuperPages = new SuperPages_Class();
