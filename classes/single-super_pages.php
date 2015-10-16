@@ -42,15 +42,12 @@ if (have_posts()) : while (have_posts()) : the_post();
 	<?php 
 		function spBgImg($imgID, $imgAttach) {	
 			if ( $imgID ){
-				$bg_size = "page-background"; // (thumbnail, medium, large, full or custom size)
-				$bg_img = wp_get_attachment_image_src( $imgID , $bg_size );
-				if ( $imgAttach == 'scroll' ){	
-					$bg_img_string = "style='background-image:url(" . $bg_img[0] . ");'";
-					echo $bg_img_string;
-				} else {
-					$bg_parallax_string = 'data-parallax="scroll" data-image-src="' . $bg_img[0] . '"';
-					echo $bg_parallax_string;
-				}
+				$desktop = "page-background"; // (thumbnail, medium, large, full or custom size)
+				$mobile = "medium";
+				$bg_img = wp_get_attachment_image_src( $imgID , $desktop );
+				$bg_img_mob = wp_get_attachment_image_src( $imgID , $mobile );
+				$bg_img_string = 'data-src-small="' . $bg_img_mob[0] . '" data-src="' . $bg_img[0] . '"  ';
+				echo $bg_img_string;	
 			} else {
 				return false;
 			}
@@ -86,7 +83,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 		if ( get_sub_field('sp-notch') ){
 			//$notch_class = 'notch';
 		}
-		$classes = "bg-" . $bgcolor . " bg-repeat-" . $bg_img_repeat . " bg-image-" . $bg_img_status . " bg-attach-" . $bg_img_attach . " bg-size-". $bg_img_size . " width-" . $width . " padding-" . $padding . " " . $notch_class;
+		$classes = "b-lazy bg-" . $bgcolor . " bg-repeat-" . $bg_img_repeat . " bg-image-" . $bg_img_status . " bg-attach-" . $bg_img_attach . " bg-size-". $bg_img_size . " width-" . $width . " padding-" . $padding . " " . $notch_class;
 
 		if(get_row_layout() == "sp-section-texthtml"): // layout: Text/HTML ?>
 			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section text-html <?php echo $classes; ?>" id="<?php echo $id; ?>">

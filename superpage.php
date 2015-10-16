@@ -23,11 +23,11 @@ class SuperPages_Class {
 		add_action( 'init', array ( $this, 'add_superpage_type' ) );
 		add_filter( 'single_template', array( $this, 'sp_single_template' ) );
 		// add_filter( 'post_type_link', array ( $this, 'df_custom_post_type_link') , 10, 2 );
+		//add_action( 'init', array( $this, 'df_custom_rewrite_rule' ) );
 		// older permalink hooks
 		add_filter( 'post_type_link',  array( $this, 'custom_remove_cpt_slug_two'), 10, 2 );
-		add_action( 'pre_get_posts', 'custom_parse_request_tricksy_two' );
-		add_action( 'init', array ( $this, 'df_custom_rewrite_rule' ) );		
-		add_action( 'wp_head', array ( $this, 'into_head' ) );	
+		add_action( 'pre_get_posts', array( $this, 'custom_parse_request_tricksy_two' ) );		
+		add_action( 'wp_head', array( $this, 'into_head' ) );	
 		add_action( 'init', array( $this, 'create_superpage_taxonomies') , 0 );
 		add_action( 'init', array( $this, 'add_homepage_display_location') , 0 );
 		
@@ -41,6 +41,7 @@ class SuperPages_Class {
 			wp_enqueue_style( 'superpages-frontend-css', $superpages_plugin_directory . 'css/style.css');
 			wp_enqueue_style( 'superpages-lightbox-css', $superpages_plugin_directory . 'source/jquery.fancybox.css');				
 			wp_enqueue_script( 'superpages-lightbox-js', $superpages_plugin_directory . 'source/jquery.fancybox.pack.js');	
+			wp_enqueue_script( 'superpages-blazy-js', $superpages_plugin_directory . 'source/blazy.js');
 		}
 	}
 	
@@ -53,6 +54,12 @@ class SuperPages_Class {
 		
 			 <script type="text/javascript">
 				jQuery(document).ready(function() {
+					var bLazy = new Blazy({
+						breakpoints: [{
+	        				width: 500,
+	        				src: 'data-src-small',
+				    	}]
+					});
 					jQuery(".fancybox").fancybox({
 						padding: 0,
 						fitToView	: true,
@@ -62,17 +69,17 @@ class SuperPages_Class {
 						openEffect	: 'none',
 						closeEffect	: 'none',
 						helpers:  {
-									overlay : {
-										css : {
-											'background-color' : 'rgba(255,255,255,0.5)'
-										}
-									}
-								},
-									afterClose: function(){
-								 jQuery(".fancybox").css("display","block");
+							overlay : {
+								css : {
+									'background-color' : 'rgba(255,255,255,0.5)'
 								}
-							});
+							}
+						},
+						afterClose: function(){
+							jQuery(".fancybox").css("display","block");
+						}
 					});
+				});
 			</script>
 		<?php }
 	}			
@@ -210,7 +217,7 @@ function add_homepage_display_location(){
 	
 	}
 
-	// Original, older permalink rewrite code
+	// ********* Original, older permalink rewrite code
 
 	*/
 	//Some URL hackin' shit - To get custom post types to not use a slug, i.e. '350.org/my-custom-post', not '350.org/custom-post-type/my-custom-post'
@@ -218,7 +225,7 @@ function add_homepage_display_location(){
 	/**
 	 * Remove the slug from published post permalinks.
 	 */
-	function custom_remove_cpt_slug_two( $post_link, $post, $leavename ) {
+	function custom_remove_cpt_slug_two( $post_link, $post ) {
 	 
 	    if ( 'super_pages' != $post->post_type || 'publish' != $post->post_status ) {
 	        return $post_link;
