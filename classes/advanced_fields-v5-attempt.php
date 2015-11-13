@@ -13,7 +13,7 @@ if ( $site_colors_json ){
 	... so do it the old-fashioned way: */
 	$sp_colors = array();
 	// break the string by comma
-	$colors = explode( PHP_EOL , $site_colors_json);
+	$colors = explode(',', $site_colors_json);
 	// iterate through the lines.
 	foreach( $colors as $color )
 	{ 
@@ -25,7 +25,7 @@ if ( $site_colors_json ){
 	        $pieces = explode( ":", $color );
 	        // the first piece now serves as the index. 
 	        // The second piece as the value.
-	        $sp_colors[ $pieces[ 1 ] ] = $pieces[ 0 ];
+	        $sp_colors[ $pieces[ 0 ] ] = $pieces[ 1 ];
 	    }
 	}
 } else {
@@ -38,14 +38,13 @@ if ( $site_colors_json ){
 		'-' => 'Transparent',
 	);
 }
-
+/*
 $sp_actionkit_title = array (
 	'key' => 'field_549704ed2d911',
 	'label' => 'Title:',
 	'name' => 'sp-actionkit-title',
 	'type' => 'text',
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => '',
 	'placeholder' => '',
 	'prepend' => '',
@@ -59,7 +58,6 @@ $sp_actionkit_intro = array (
 	'name' => 'sp-actionkit-intro',
 	'type' => 'wysiwyg',
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => '',
 	'placeholder' => '',
 	'prepend' => '',
@@ -73,7 +71,6 @@ $sp_actionkit_submit = array (
 	'name' => 'sp-actionkit-submit',
 	'type' => 'text',
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => 'Sign Up',
 	'placeholder' => '',
 	'prepend' => '',
@@ -87,7 +84,6 @@ $sp_actionkit_confirmation = array (
 	'name' => 'sp-actionkit-confirmation',
 	'type' => 'textarea',
 	'instructions' => 'Replaces the form once data is successfully submitted.',
-	'column_width' => '',
 	'default_value' => 'Thank You for Signing Up!',
 	'placeholder' => '',
 	'prepend' => '',
@@ -102,7 +98,6 @@ $sp_actionkit_custom = array (
 	'name' => 'sp-actionkit-custom',
 	'type' => 'textarea',
 	'instructions' => 'HTML for additional custom input fields.',
-	'column_width' => '',
 	'default_value' => '',
 	'placeholder' => '',
 	'prepend' => '',
@@ -138,18 +133,15 @@ $sp_actionkit_name_label = array (
 	'name' => 'sp-actionkit-name-label',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_549704ed2d9100',
 				'operator' => '==',
 				'value' => 'true',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => 'Name',
 	'placeholder' => '',
 	'prepend' => '',
@@ -175,18 +167,15 @@ $sp_actionkit_email_label = array (
 	'name' => 'sp-actionkit-email-label',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_549704ed2d9100',
 				'operator' => '==',
 				'value' => 'true',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => 'Email',
 	'placeholder' => '',
 	'prepend' => '',
@@ -211,18 +200,15 @@ $sp_actionkit_city_label = array (
 	'name' => 'sp-actionkit-city-label',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_549704ed2d9100',
 				'operator' => '==',
 				'value' => 'true',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => 'City',
 	'placeholder' => '',
 	'prepend' => '',
@@ -247,18 +233,15 @@ $sp_actionkit_postal_label = array (
 	'name' => 'sp-actionkit-postal-label',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_549704ed2d9100',
 				'operator' => '==',
 				'value' => 'true',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => 'Postal',
 	'placeholder' => '',
 	'prepend' => '',
@@ -283,18 +266,15 @@ $sp_actionkit_zip_label = array (
 	'name' => 'sp-actionkit-zip-label',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_549704ed2d9100',
 				'operator' => '==',
 				'value' => 'true',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => 'ZIP',
 	'placeholder' => '',
 	'prepend' => '',
@@ -319,18 +299,15 @@ $sp_actionkit_phone_label = array (
 	'name' => 'sp-actionkit-phone-label',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_549704ed2d9100',
 				'operator' => '==',
 				'value' => 'true',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => 'Phone',
 	'placeholder' => '',
 	'prepend' => '',
@@ -355,18 +332,15 @@ $sp_actionkit_country_label = array (
 	'name' => 'sp-actionkit-country-label',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_549704ed2d9100',
 				'operator' => '==',
 				'value' => 'true',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => '',
-	'column_width' => '',
 	'default_value' => 'Country',
 	'placeholder' => '',
 	'prepend' => '',
@@ -394,16 +368,22 @@ $sp_adv_opt = array (
 	'label' => 'Show Advanced Options',
 	'name' => 'sp-show-advanced-options',
 	'type' => 'true_false',
-	'column_width' => '',
+	'instructions' => '',
+	'required' => 0,
 	'message' => '',
+	'conditional_logic' => 0,
 	'default_value' => 0,
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
 );
 $sp_bg_color = array (
 	'key' => 'field_5496fecd4a333',
 	'label' => 'Background Color',
 	'name' => 'sp-bg-color',
 	'type' => 'select',
-	'column_width' => '',
 	'choices' => $sp_colors,
 	'default_value' => 'white',
 	'allow_null' => 0,
@@ -414,8 +394,7 @@ $sp_bg_img = array (
 	'label' => 'Background Image',
 	'name' => 'sp-bg-image',
 	'type' => 'image',
-	'column_width' => '',
-	'save_format' => 'id',
+	'return_format' => 'id',
 	'preview_size' => 'medium',
 	'library' => 'all',
 );
@@ -425,18 +404,15 @@ $sp_bg_img_credit = array (
 	'name' => 'sp-bg-image-credit',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_5496fea74a333',
 				'operator' => '==',
 				'value' => '1',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => 'Optional.',
-	'column_width' => '',
 	'default_value' => '',
 	'placeholder' => '',
 	'prepend' => '',
@@ -450,18 +426,15 @@ $sp_bg_img_credit_url = array (
 	'name' => 'sp-bg-image-credit-url',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_5496fea74a333',
 				'operator' => '==',
 				'value' => '1',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => 'Optional.',
-	'column_width' => '',
 	'default_value' => '',
 	'placeholder' => '',
 	'prepend' => '',
@@ -475,17 +448,14 @@ $sp_bg_img_size = array (
 	'name' => 'sp-bg-image-size',
 	'type' => 'select',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_5496fea74a333',
 				'operator' => '==',
 				'value' => '1',
 			),
 		),
-		'allorany' => 'all',
 	),
-	'column_width' => '',
 	'choices' => array (
 		'cover' => 'Cover',
 		'full-width' => 'Full width, auto height',
@@ -501,17 +471,14 @@ $sp_bg_img_attach = array (
 	'name' => 'sp-bg-image-attach',
 	'type' => 'select',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_5496fea74a333',
 				'operator' => '==',
 				'value' => '1',
 			),
 		),
-		'allorany' => 'all',
 	),
-	'column_width' => '',
 	'choices' => array (
 		'scroll' => 'Normal',
 		'fixed' => 'Fixed',
@@ -526,17 +493,14 @@ $sp_bg_img_repeat = array (
 	'name' => 'sp-bg-image-repeat',
 	'type' => 'select',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_5496fea74a333',
 				'operator' => '==',
 				'value' => '1',
 			),
 		),
-		'allorany' => 'all',
 	),
-	'column_width' => '',
 	'choices' => array (
 		'none' => 'None',
 		'x' => 'Repeat Horizontally',
@@ -552,7 +516,6 @@ $sp_width = array (
 	'label' => 'Width',
 	'name' => 'sp-width',
 	'type' => 'select',
-	'column_width' => '',
 	'choices' => array (
 		'narrow' => 'Narrow',
 		'normal' => 'Normal',
@@ -568,7 +531,6 @@ $sp_margins = array (
 	'label' => 'Margins',
 	'name' => 'sp-padding',
 	'type' => 'select',
-	'column_width' => '',
 	'choices' => array (
 		'none' => 'None',
 		'small' => 'Small',
@@ -587,17 +549,14 @@ $sp_notch = array (
 	'name' => 'sp-notch',
 	'type' => 'true_false',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_5496fea74a333',
 				'operator' => '==',
 				'value' => '1',
 			),
 		),
-		'allorany' => 'all',
 	),
-	'column_width' => '',
 	'message' => '',
 	'default_value' => 0,
 );
@@ -607,43 +566,15 @@ $sp_id = array (
 	'name' => 'sp-id',
 	'type' => 'text',
 	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
+		array (
 			array (
 				'field' => 'field_5496fea74a333',
 				'operator' => '==',
 				'value' => '1',
 			),
 		),
-		'allorany' => 'all',
 	),
 	'instructions' => 'for CSS and anchor linking.',
-	'column_width' => '',
-	'default_value' => '',
-	'placeholder' => '',
-	'prepend' => '',
-	'append' => '',
-	'formatting' => 'html',
-	'maxlength' => '',
-);
-$sp_css_class = array (
-	'key' => 'field_54970b9a2d771',
-	'label' => 'CSS classes',
-	'name' => 'sp-css-classes',
-	'type' => 'text',
-	'conditional_logic' => array (
-		'status' => 1,
-		'rules' => array (
-			array (
-				'field' => 'field_5496fea74a333',
-				'operator' => '==',
-				'value' => '1',
-			),
-		),
-		'allorany' => 'all',
-	),
-	'instructions' => '',
-	'column_width' => '',
 	'default_value' => '',
 	'placeholder' => '',
 	'prepend' => '',
@@ -652,12 +583,14 @@ $sp_css_class = array (
 	'maxlength' => '',
 );
 
-
+/* Doesn't work with ACF v5 
 // Add ACF custom fields for editing Superpages
-if ( function_exists( "register_field_group" ) )
-{
-	register_field_group(array (
-		'id' => 'acf_superpages-plugin',
+if( function_exists('acf_add_local_field_group') ):
+
+acf_add_local_field_group(array (
+		//'id' => 'acf_superpages-plugin',
+		// added from export, testing ACF Pro compat.
+		'key' => 'group_56253ab2a07b4',
 		'title' => 'Superpages',
 		'fields' => array (
 			array (
@@ -694,17 +627,15 @@ if ( function_exists( "register_field_group" ) )
 				'name' => 'sp_default_bg',
 				'type' => 'image',
 				'conditional_logic' => array (
-					'status' => 1,
-					'rules' => array (
+					array (
 						array (
 							'field' => $sp_default_bg_choice_key,
 							'operator' => '==',
 							'value' => 'custom',
 						),
 					),
-					'allorany' => 'all',
 				),
-				'save_format' => 'id',
+				'return_format' => 'id',
 				'preview_size' => 'thumbnail',
 				'library' => 'all',
 			),
@@ -713,7 +644,14 @@ if ( function_exists( "register_field_group" ) )
 				'label' => 'Sections',
 				'name' => 'sp-sections',
 				'type' => 'flexible_content',
-				'required' => 1,
+				'instructions' => '',
+				'required' => 0,
+				'conditional_logic' => 0,
+				'wrapper' => array(
+					'width' => '',
+					'class' => '',
+					'id' => '',
+				),
 				'layouts' => array (
 					array (
 						'label' => 'Text/HTML',
@@ -721,16 +659,25 @@ if ( function_exists( "register_field_group" ) )
 						'display' => 'row',
 						'min' => '',
 						'max' => '',
+						'wrapper' => array (
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
 						'sub_fields' => array (
 							array (
 								'key' => 'field_539b288ded333',
 								'label' => 'Content',
 								'name' => 'sp-section-content',
 								'type' => 'wysiwyg',
-								'column_width' => '',
 								'default_value' => '',
 								'toolbar' => 'full',
-								'media_upload' => 'yes',
+								'media_upload' => 1,
+								'wrapper' => array (
+									'width' => '',
+									'class' => '',
+									'id' => '',
+								),
 							),
 							$sp_adv_opt,
 							$sp_bg_color,
@@ -744,7 +691,6 @@ if ( function_exists( "register_field_group" ) )
 							$sp_margins,
 							$sp_notch,
 							$sp_id,
-							$sp_css_class
 						),
 					),
 					array (
@@ -753,18 +699,27 @@ if ( function_exists( "register_field_group" ) )
 						'display' => 'row',
 						'min' => '',
 						'max' => '',
+						'wrapper' => array (
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
 						'sub_fields' => array (
 							array (
 								'key' => 'field_539b29874c333',
 								'label' => 'Code',
 								'name' => 'sp-section-content',
 								'type' => 'textarea',
-								'column_width' => '',
 								'default_value' => '',
 								'placeholder' => '',
 								'maxlength' => '',
 								'rows' => '',
 								'formatting' => 'html',
+								'wrapper' => array (
+									'width' => '',
+									'class' => '',
+									'id' => '',
+								),
 							),
 							$sp_adv_opt,
 							$sp_bg_color,
@@ -778,7 +733,6 @@ if ( function_exists( "register_field_group" ) )
 							$sp_margins,
 							$sp_notch,
 							$sp_id,
-							$sp_css_class
 						),
 					),
 					array (
@@ -787,6 +741,11 @@ if ( function_exists( "register_field_group" ) )
 						'display' => 'row',
 						'min' => '',
 						'max' => '',
+						'wrapper' => array (
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
 						'sub_fields' => array (
 							array (
 								'key' => 'field_539b29874c444',
@@ -794,12 +753,16 @@ if ( function_exists( "register_field_group" ) )
 								'name' => 'sp-section-actionkit',
 								'type' => 'text',
 								'instructions' => 'Controls which ActionKit page data is submitted to.',
-								'column_width' => '',
 								'default_value' => '',
 								'placeholder' => '',
 								'maxlength' => '',
 								'rows' => '',
 								'formatting' => 'html',
+								'wrapper' => array (
+									'width' => '',
+									'class' => '',
+									'id' => '',
+								),
 							),
 							$sp_actionkit_title,
 							$sp_actionkit_intro,
@@ -834,7 +797,6 @@ if ( function_exists( "register_field_group" ) )
 							$sp_margins,
 							$sp_notch,
 							$sp_id,
-							$sp_css_class
 						),
 					),					
 					array (
@@ -843,13 +805,17 @@ if ( function_exists( "register_field_group" ) )
 						'display' => 'row',
 						'min' => '',
 						'max' => '',
+						'wrapper' => array (
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
 						'sub_fields' => array (
 							array (
 								'key' => 'field_53cf04a000333',
 								'label' => 'Number of posts to display',
 								'name' => 'sp-posts-num',
 								'type' => 'number',
-								'column_width' => '',
 								'default_value' => 5,
 								'placeholder' => '',
 								'prepend' => '',
@@ -857,6 +823,11 @@ if ( function_exists( "register_field_group" ) )
 								'min' => 1,
 								'max' => 20,
 								'step' => 1,
+								'wrapper' => array (
+									'width' => '',
+									'class' => '',
+									'id' => '',
+								),
 							),
 							array (
 								'key' => 'field_53cf059d00333',
@@ -864,13 +835,17 @@ if ( function_exists( "register_field_group" ) )
 								'name' => 'sp-posts-cat',
 								'type' => 'text',
 								'instructions' => 'Optionally filter posts by category. Enter a category "slug" (the all-lowercase, URL-friendly category name). Leave blank to include posts from all categories.',
-								'column_width' => '',
 								'default_value' => '',
 								'placeholder' => '',
 								'prepend' => '',
 								'append' => '',
 								'formatting' => 'none',
 								'maxlength' => '',
+								'wrapper' => array (
+									'width' => '',
+									'class' => '',
+									'id' => '',
+								),
 							),
 							array (
 								'key' => 'field_53cf09d3f8333',
@@ -878,13 +853,17 @@ if ( function_exists( "register_field_group" ) )
 								'name' => 'sp-section-title',
 								'type' => 'text',
 								'instructions' => 'A label that appears above the posts. "Latest Updates" or "News", etc.',
-								'column_width' => '',
 								'default_value' => '',
 								'placeholder' => '',
 								'prepend' => '',
 								'append' => '',
 								'formatting' => 'html',
 								'maxlength' => '',
+								'wrapper' => array (
+									'width' => '',
+									'class' => '',
+									'id' => '',
+								),
 							),
 							$sp_adv_opt,
 							$sp_bg_color,
@@ -898,7 +877,6 @@ if ( function_exists( "register_field_group" ) )
 							$sp_margins,
 							$sp_notch,
 							$sp_id,
-							$sp_css_class
 						),
 					),
 					array (
@@ -907,6 +885,11 @@ if ( function_exists( "register_field_group" ) )
 						'display' => 'row',
 						'min' => '',
 						'max' => '',
+						'wrapper' => array (
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						),
 						'sub_fields' => array (
 							array (
 								'key' => 'field_539b29a64c333',
@@ -914,19 +897,30 @@ if ( function_exists( "register_field_group" ) )
 								'name' => 'sp-section-navslug',
 								'type' => 'text',
 								'instructions' => 'The name of the menu you wish to include. See \'Menus\' under \'Appearance\' to make a menu.',
-								'column_width' => '',
 								'default_value' => '',
 								'placeholder' => '',
 								'prepend' => '',
 								'append' => '',
 								'formatting' => 'html',
 								'maxlength' => '',
+								'wrapper' => array (
+									'width' => '',
+									'class' => '',
+									'id' => '',
+								),
 							),
 							$sp_adv_opt,
 							$sp_bg_color,
+							$sp_bg_img,
+							$sp_bg_img_credit,
+							$sp_bg_img_credit_url,
+							$sp_bg_img_size,
+							$sp_bg_img_attach,
+							$sp_bg_img_repeat,
+							$sp_width,
+							$sp_margins,
 							$sp_notch,
 							$sp_id,
-							$sp_css_class
 						),
 					),
 					array (
@@ -948,8 +942,7 @@ if ( function_exists( "register_field_group" ) )
 										'name' => 'grid-square-img',
 										'type' => 'image',
 										'instructions' => '400px square. If larger, the image will be cropped down to that size.',
-										'column_width' => '',
-										'save_format' => 'id',
+										'return_format' => 'id',
 										'preview_size' => 'thumbnail-square',
 										'library' => 'all',
 									),
@@ -959,7 +952,6 @@ if ( function_exists( "register_field_group" ) )
 										'name' => 'grid-square-title',
 										'type' => 'text',
 										'instructions' => '(1-3 words)',
-										'column_width' => '',
 										'default_value' => '',
 										'placeholder' => '',
 										'prepend' => '',
@@ -973,7 +965,6 @@ if ( function_exists( "register_field_group" ) )
 										'name' => 'grid-square-link',
 										'type' => 'text',
 										'instructions' => '',
-										'column_width' => '',
 										'default_value' => '',
 										'placeholder' => 'http://www.example.com (Optional)',
 										'prepend' => '',
@@ -993,7 +984,6 @@ if ( function_exists( "register_field_group" ) )
 								'name' => 'grid-square-columns',
 								'type' => 'radio',
 								'instructions' => 'Only applies at desktop browser widths.',
-								'column_width' => '',
 								'choices' => array (
 									'c5' => 2,
 									'c3_3' => 3,
@@ -1018,43 +1008,8 @@ if ( function_exists( "register_field_group" ) )
 							$sp_margins,
 							$sp_notch,
 							$sp_id,
-							$sp_css_class
 						),
 					),
-					/* array (
-						'label' => 'Ticker',
-						'name' => 'sp-section-ticker',
-						'display' => 'row',
-						'min' => '',
-						'max' => '',
-						'sub_fields' => array (
-							array (
-								'key' => 'field_539b29a64c444',
-								'label' => 'Ticker ID',
-								'name' => 'sp-ticker-id',
-								'type' => 'text',
-								'instructions' => 'The 4-digit ID of the ticker to include',
-								'column_width' => '',
-								'default_value' => '',
-								'placeholder' => '',
-								'prepend' => '',
-								'append' => '',
-								'formatting' => 'html',
-								'maxlength' => '',
-							),
-							$sp_adv_opt,
-							$sp_bg_color,
-							$sp_bg_img,
-							$sp_bg_img_credit,
-							$sp_bg_img_credit_url,
-							$sp_bg_img_size,
-							$sp_bg_img_attach,
-							$sp_bg_img_repeat,
-							$sp_width,
-							$sp_margins,
-							$sp_id,
-						),
-					),*/
 				),
 				'button_label' => 'Add Row',
 				'min' => '',
@@ -1067,17 +1022,545 @@ if ( function_exists( "register_field_group" ) )
 					'param' => 'post_type',
 					'operator' => '==',
 					'value' => 'super_pages',
-					'order_no' => 0,
-					'group_no' => 0,
 				),
 			),
 		),
-		'options' => array (
-			'position' => 'normal',
-			'layout' => 'no_box',
-			'hide_on_screen' => array (
-			),
+		'position' => 'normal',
+		'style' => 'seamless',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => array(
+			0 => 'custom_fields',
 		),
 		'menu_order' => 1,
+		'active' => 1,
+		'description' => '',
 	));
-}
+endif; */
+
+$sp_adv_opt = array (
+	'key' => 'field_56255095b0a05',
+	'label' => 'Show Advanced Options',
+	'name' => 'sp-show-advanced-options',
+	'type' => 'true_false',
+	'instructions' => '',
+	'required' => 0,
+	'conditional_logic' => 0,
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'message' => '',
+	'default_value' => 0,
+);
+$sp_bg_color = array (
+	'key' => 'field_562550d0b0a06',
+	'label' => 'Background Color',
+	'name' => 'sp-bg-color',
+	'type' => 'select',
+	'instructions' => '',
+	'required' => 0,
+	'conditional_logic' => 0,
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'choices' => array (
+		'blue' => 'Blue',
+		'ltgray' => 'Light Gray',
+		'dkgray' => 'Dark Gray',
+		'orange' => 'Orange',
+		'white' => 'white',
+		'transparent' => 'Transparent',
+	),
+	'default_value' => array (
+		'white' => 'white',
+	),
+	'multiple' => 0,
+	'allow_null' => 0,
+	'ui' => 0,
+	'ajax' => 0,
+	'placeholder' => '',
+	'disabled' => 0,
+	'readonly' => 0,
+);
+$sp_bg_img = array (
+	'key' => 'field_56255179b0a0b',
+	'label' => 'Background Image',
+	'name' => 'sp-bg-img',
+	'type' => 'image',
+	'instructions' => '',
+	'required' => 0,
+	'conditional_logic' => 0,
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'return_format' => 'id',
+	'preview_size' => 'medium',
+	'library' => 'all',
+	'min_width' => '',
+	'min_height' => '',
+	'min_size' => '',
+	'max_width' => '',
+	'max_height' => '',
+	'max_size' => '',
+	'mime_types' => '',
+);
+$sp_bg_img_credit = array (
+	'key' => 'field_562552916d8b0',
+	'label' => 'Image Credit',
+	'name' => 'sp-bg-image-credit',
+	'type' => 'text',
+	'instructions' => 'Optional.',
+	'required' => 0,
+	'conditional_logic' => array (
+		array (
+			array (
+				'field' => 'field_56255095b0a05',
+				'operator' => '==',
+				'value' => '1',
+			),
+		),
+	),
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'default_value' => '',
+	'placeholder' => '',
+	'prepend' => '',
+	'append' => '',
+	'maxlength' => '',
+	'readonly' => 0,
+	'disabled' => 0,
+);
+$sp_bg_img_credit_url = array (
+	'key' => 'field_562552dd6d8b1',
+	'label' => 'Image Credit URL',
+	'name' => 'sp-bg-image-credit-url',
+	'type' => 'url',
+	'instructions' => 'Optional.',
+	'required' => 0,
+	'conditional_logic' => array (
+		array (
+			array (
+				'field' => 'field_56255095b0a05',
+				'operator' => '==',
+				'value' => '1',
+			),
+		),
+	),
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'default_value' => '',
+	'placeholder' => '',
+);
+$sp_bg_img_size = array (
+	'key' => 'field_562553206d8b2',
+	'label' => 'Background Size',
+	'name' => 'sp-bg-image-size',
+	'type' => 'select',
+	'instructions' => '',
+	'required' => 0,
+	'conditional_logic' => array (
+		array (
+			array (
+				'field' => 'field_56255127b0a09',
+				'operator' => '==',
+				'value' => '1',
+			),
+		),
+	),
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'choices' => array (
+		'cover' => 'Cover',
+		'full-width' => '100% width, proportional height',
+		'normal' => 'No resizing (as uploaded)',
+	),
+	'default_value' => array (
+		'cover' => 'cover',
+	),
+	'allow_null' => 0,
+	'multiple' => 0,
+	'ui' => 0,
+	'ajax' => 0,
+	'placeholder' => '',
+	'disabled' => 0,
+	'readonly' => 0,
+);
+
+$sp_bg_img_attach = array (
+	'key' => 'field_562553746d8b3',
+	'label' => 'Background Attachment',
+	'name' => 'sp-bg-image-attach',
+	'type' => 'select',
+	'instructions' => '',
+	'required' => 0,
+	'conditional_logic' => array (
+		array (
+			array (
+				'field' => 'field_56255127b0a09',
+				'operator' => '==',
+				'value' => '1',
+			),
+		),
+	),
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'choices' => array (
+		'scroll' => 'Normal',
+		'fixed' => 'Fixed',
+	),
+	'default_value' => array (
+	),
+	'allow_null' => 0,
+	'multiple' => 0,
+	'ui' => 0,
+	'ajax' => 0,
+	'placeholder' => '',
+	'disabled' => 0,
+	'readonly' => 0,
+);
+$sp_bg_img_repeat = array (
+	'key' => 'field_562553a26d8b4',
+	'label' => 'Background Repeat',
+	'name' => 'sp-bg-image-repeat',
+	'type' => 'select',
+	'instructions' => '',
+	'required' => 0,
+	'conditional_logic' => array (
+		array (
+			array (
+				'field' => 'field_56255127b0a09',
+				'operator' => '==',
+				'value' => '1',
+			),
+		),
+	),
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'choices' => array (
+		'none' => 'None',
+		'both' => 'Repeat in both directions',
+		'x' => 'Repeat Horizontally',
+		'y' => 'Repeat Vertically',
+	),
+	'default_value' => array (
+	),
+	'allow_null' => 0,
+	'multiple' => 0,
+	'ui' => 0,
+	'ajax' => 0,
+	'placeholder' => '',
+	'disabled' => 0,
+	'readonly' => 0,
+);
+$sp_width = array (
+	'key' => 'field_562553d76d8b5',
+	'label' => 'Width',
+	'name' => 'sp-width',
+	'type' => 'select',
+	'instructions' => '',
+	'required' => 0,
+	'conditional_logic' => 0,
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'choices' => array (
+		'narrow' => 'Narrow',
+		'normal' => 'Normal',
+		'wide' => 'Wide',
+		'full' => 'Full-width',
+	),
+	'default_value' => array (
+	),
+	'allow_null' => 0,
+	'multiple' => 0,
+	'ui' => 0,
+	'ajax' => 0,
+	'placeholder' => '',
+	'disabled' => 0,
+	'readonly' => 0,
+);
+$sp_margins = 	array (
+	'key' => 'field_562553fd6d8b6',
+	'label' => 'Margins',
+	'name' => 'sp-margins',
+	'type' => 'select',
+	'instructions' => '',
+	'required' => 0,
+	'conditional_logic' => 0,
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'choices' => array (
+		'none' => 'None',
+		'small' => 'Small',
+		'medium' => 'Medium',
+		'large' => 'Large',
+		'huge' => 'Huge',
+		'gigantic' => 'Gigantic',
+	),
+	'default_value' => array (
+	),
+	'allow_null' => 0,
+	'multiple' => 0,
+	'ui' => 0,
+	'ajax' => 0,
+	'placeholder' => '',
+	'disabled' => 0,
+	'readonly' => 0,
+);
+$sp_notch = array (
+	'key' => 'field_5625542b6d8b7',
+	'label' => 'Add Top Notch',
+	'name' => 'sp-notch',
+	'type' => 'true_false',
+	'instructions' => '',
+	'required' => 0,
+	'conditional_logic' => array (
+		array (
+			array (
+				'field' => 'field_56255127b0a09',
+				'operator' => '==',
+				'value' => '1',
+			),
+		),
+	),
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'message' => '',
+	'default_value' => 0,
+);
+$sp_id = array (
+	'key' => 'field_562554456d8b8',
+	'label' => 'ID',
+	'name' => 'sp-id',
+	'type' => 'text',
+	'instructions' => 'for CSS and anchor linking.',
+	'required' => 0,
+	'conditional_logic' => array (
+		array (
+			array (
+				'field' => 'field_56255127b0a09',
+				'operator' => '==',
+				'value' => '1',
+			),
+		),
+	),
+	'wrapper' => array (
+		'width' => '',
+		'class' => '',
+		'id' => '',
+	),
+	'default_value' => '',
+	'placeholder' => '',
+	'prepend' => '',
+	'append' => '',
+	'maxlength' => '',
+	'readonly' => 0,
+	'disabled' => 0,
+);
+
+
+if( function_exists('acf_add_local_field_group') ):
+
+acf_add_local_field_group(array (
+	'key' => 'group_56254eeb87e83',
+	'title' => 'Superpages ACFv5',
+	'fields' => array (
+		array (
+			'key' => 'field_56254f29b0a01',
+			'label' => 'Show Header',
+			'name' => 'sp-show-header',
+			'type' => 'checkbox',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array (
+				'true' => 'Show Header',
+			),
+			'default_value' => array (
+			),
+			'layout' => 'vertical',
+			'toggle' => 0,
+		),
+		array (
+			'key' => 'field_56254f77b0a02',
+			'label' => 'Page Background',
+			'name' => 'sp_default_bg_choice',
+			'type' => 'radio',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array (
+				'none' => 'None',
+				'custom' => 'Upload an image',
+				'default' => 'Site default background',
+			),
+			'other_choice' => 0,
+			'save_other_choice' => 0,
+			'default_value' => '',
+			'layout' => 'vertical',
+		),
+		array (
+			'key' => 'field_56255025b0a03',
+			'label' => 'Sections',
+			'name' => 'sp-sections',
+			'type' => 'flexible_content',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array (
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'button_label' => 'Add Row',
+			'min' => '',
+			'max' => '',
+			'layouts' => array (
+				array (
+					'key' => '5625503236c71',
+					'name' => 'sp-section-texthtml',
+					'label' => 'Text/HTML',
+					'display' => 'row',
+					'sub_fields' => array (
+						array (
+							'key' => 'field_56255050b0a04',
+							'label' => 'Content',
+							'name' => 'sp-section-content',
+							'type' => 'wysiwyg',
+							'instructions' => '',
+							'required' => 0,
+							'conditional_logic' => 0,
+							'wrapper' => array (
+								'width' => '',
+								'class' => '',
+								'id' => '',
+							),
+							'default_value' => '',
+							'tabs' => 'all',
+							'toolbar' => 'full',
+							'media_upload' => 1,
+						),
+						$sp_adv_opt,
+						$sp_bg_color,
+						$sp_bg_img,
+						$sp_bg_img_credit,
+						$sp_bg_img_credit_url,
+						$sp_bg_img_size,
+						$sp_bg_img_attach,
+						$sp_bg_img_repeat,
+						$sp_width,
+						$sp_margins,
+						$sp_notch,
+						$sp_id,
+					),
+					'min' => '',
+					'max' => '',
+				),
+				array (
+					'key' => '56255127b0a07',
+					'name' => 'sp-section-code',
+					'label' => 'Code',
+					'display' => 'row',
+					'sub_fields' => array (
+						array (
+							'key' => 'field_56255127b0a08',
+							'label' => 'Code',
+							'name' => 'sp-section-content',
+							'type' => 'textarea',
+							'instructions' => '',
+							'required' => 0,
+							'conditional_logic' => 0,
+							'wrapper' => array (
+								'width' => '',
+								'class' => '',
+								'id' => '',
+							),
+							'default_value' => '',
+							'placeholder' => '',
+							'maxlength' => '',
+							'rows' => '',
+							'new_lines' => '',
+							'readonly' => 0,
+							'disabled' => 0,
+						),
+						$sp_adv_opt,
+						$sp_bg_color,
+						$sp_bg_img,
+						$sp_bg_img_credit,
+						$sp_bg_img_credit_url,
+						$sp_bg_img_size,
+						$sp_bg_img_attach,
+						$sp_bg_img_repeat,
+						$sp_width,
+						$sp_margins,
+						$sp_notch,
+						$sp_id,
+					),
+					'min' => '',
+					'max' => '',
+				),
+			),
+		),
+	),
+	'location' => array (
+		array (
+			array (
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'super_pages',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'acf_after_title',
+	'style' => 'seamless',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => array (
+		0 => 'the_content',
+		1 => 'custom_fields',
+	),
+	'active' => 1,
+	'description' => '',
+));
+
+endif;

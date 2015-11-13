@@ -67,6 +67,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 
 		if( have_rows( "sp-sections" ) ): while( have_rows( "sp-sections" ) ): the_row(); 
 		$id = get_sub_field("sp-id");
+		$classes = get_sub_field("sp-css-classes");
 		$bgcolor = get_sub_field("sp-bg-color");
 		$padding = get_sub_field("sp-padding");
 		$width = get_sub_field("sp-width");
@@ -83,7 +84,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 		if ( get_sub_field('sp-notch') ){
 			//$notch_class = 'notch';
 		}
-		$classes = "b-lazy bg-" . $bgcolor . " bg-repeat-" . $bg_img_repeat . " bg-image-" . $bg_img_status . " bg-attach-" . $bg_img_attach . " bg-size-". $bg_img_size . " width-" . $width . " padding-" . $padding . " " . $notch_class;
+		$classes = "b-lazy bg-" . $bgcolor . " bg-repeat-" . $bg_img_repeat . " bg-image-" . $bg_img_status . " bg-attach-" . $bg_img_attach . " bg-size-". $bg_img_size . " width-" . $width . " padding-" . $padding . " " . $notch_class . " " . $classes;
 
 		if(get_row_layout() == "sp-section-texthtml"): // layout: Text/HTML ?>
 			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section text-html <?php echo $classes; ?>" id="<?php echo $id; ?>">

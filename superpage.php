@@ -38,7 +38,8 @@ class SuperPages_Class {
 		if ($post->post_type == "super_pages"){
 			$superpages_plugin_directory = plugin_dir_url( __FILE__ );
 			wp_enqueue_script('jquery');
-			wp_enqueue_style( 'superpages-frontend-css', $superpages_plugin_directory . 'css/style.css');
+			wp_enqueue_style( 'baseline', $superpages_plugin_directory . 'css/style.css');
+			wp_enqueue_style( 'superpage-legacy', $superpages_plugin_directory . 'css/superpage-legacy.css');
 			wp_enqueue_style( 'superpages-lightbox-css', $superpages_plugin_directory . 'source/jquery.fancybox.css');				
 			wp_enqueue_script( 'superpages-lightbox-js', $superpages_plugin_directory . 'source/jquery.fancybox.pack.js');	
 			wp_enqueue_script( 'superpages-blazy-js', $superpages_plugin_directory . 'source/blazy.js');
