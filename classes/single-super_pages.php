@@ -1,26 +1,25 @@
-<?php 
+<?php
 /*
 * Template for Single SuperPages
 *
 */
-get_header(); 
+get_header();
 
-if (have_posts()) : while (have_posts()) : the_post(); 
+if (have_posts()) : while (have_posts()) : the_post();
 // post_password_required adds support for Password protection
 	if ( !post_password_required() ){ ?>
-<section id="content" class="superpage">
 	<style>
-		<?php 
+		<?php
 			$showHeader = get_field("sp-show-header");
 			if ($showHeader): else :
 		?>
 		#site-header,
 		#site-nav{
 			display:none !important;}
-		<?php 
+		<?php
 			endif;
 			$spBgChoice = get_field("sp_default_bg_choice");
-			if ( $spBgChoice == 'custom' ) : 
+			if ( $spBgChoice == 'custom' ) :
 				$spBgImgId = get_field("sp_default_bg");
 				$spBgSize = "page-background";
 				$spBgImgArray = wp_get_attachment_image_src( $spBgImgId , $spBgSize );
@@ -29,34 +28,34 @@ if (have_posts()) : while (have_posts()) : the_post();
 		body{
 			background-image:url('<?php echo $spBgImgUrl; ?>') !important;
 			background-size:cover;}
-		<?php 
+		<?php
 			elseif ($spBgChoice == 'none') :
 		?>
 		body{
 			background:transparent !important;}
-		<?php 
+		<?php
 			endif;
 		?>
 	</style>
 
-	<?php 
-		function spBgImg($imgID, $imgAttach) {	
+	<?php
+		function spBgImg($imgID, $imgAttach) {
 			if ( $imgID ){
 				$desktop = "page-background"; // (thumbnail, medium, large, full or custom size)
 				$mobile = "medium";
 				$bg_img = wp_get_attachment_image_src( $imgID , $desktop );
 				$bg_img_mob = wp_get_attachment_image_src( $imgID , $mobile );
 				$bg_img_string = 'data-src-small="' . $bg_img_mob[0] . '" data-src="' . $bg_img[0] . '"  ';
-				echo $bg_img_string;	
+				echo $bg_img_string;
 			} else {
 				return false;
 			}
 		}
-		function spBgImgCredit($imgCred, $imgCredUrl) {	
+		function spBgImgCredit($imgCred, $imgCredUrl) {
 			if ( $imgCred ){
 				if ($imgCredUrl){
 					$bg_cred_link_open = '<a href="' . $bg_cred_link_front . '" target="_blank">';
-					$bg_cred_link_close = '</a>'; 
+					$bg_cred_link_close = '</a>';
 				}
 				$bg_cred_string = '<div class="section-img-credit">' . $bg_cred_link_open . $imgCred . $bg_cred_link_close . '</div>';
 				echo $bg_cred_string;
@@ -65,7 +64,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 			}
 		}
 
-		if( have_rows( "sp-sections" ) ): while( have_rows( "sp-sections" ) ): the_row(); 
+		if( have_rows( "sp-sections" ) ): while( have_rows( "sp-sections" ) ): the_row();
 		$id = get_sub_field("sp-id");
 		$classes = get_sub_field("sp-css-classes");
 		$bgcolor = get_sub_field("sp-bg-color");
@@ -94,7 +93,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 				</div>
 				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
 			</div>
-			
+
 		<?php elseif(get_row_layout() == "sp-section-code") : ?>
 			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section code <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<div class="section-inner code-inner">
@@ -105,7 +104,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 			</div>
 
 		<?php /* elseif(get_row_layout() == "sp-section-ticker") : ?>
-		
+
 			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> id="news-ticker">
 				<div class="section-inner code-inner <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<?php if(function_exists('ditty_news_ticker')){ditty_news_ticker(3256);} ?>
@@ -114,21 +113,21 @@ if (have_posts()) : while (have_posts()) : the_post();
 			</div> */ ?>
 
 		<?php elseif(get_row_layout() == "sp-section-actionkit") : ?>
-		
+
 			<div <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section actionkit <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<div id="action-kit-inner" class="section-inner code-inner">
 					<h3 style="text-align:center;"><strong><?php echo get_sub_field('sp-actionkit-title'); ?></strong></h3>
 			<?php $akpage = get_sub_field( 'sp-section-actionkit' ); ?>
 				<?php if ($akpage == '') { ?>
 					<p><strong>Error:</strong> Insert your ActionKit Page ID in the widget settings to activate this form.</p>
-				<?php }else{ 
+				<?php }else{
 			$actionk_title = get_sub_field( 'sp-actionkit-title' );
 			$actionk_intro =  get_sub_field( 'sp-actionkit-intro' );
 			$actionk_submit = get_sub_field( 'sp-actionkit-submit' );
-			$actionk_name = get_sub_field( 'sp-actionkit-name' ); 
+			$actionk_name = get_sub_field( 'sp-actionkit-name' );
 			$actionk_name_label = get_sub_field( 'sp-actionkit-name-label' );
-			$actionk_email = get_sub_field( 'sp-actionkit-email' ); 
-			$actionk_email_label = get_sub_field( 'sp-actionkit-email-label' ); 
+			$actionk_email = get_sub_field( 'sp-actionkit-email' );
+			$actionk_email_label = get_sub_field( 'sp-actionkit-email-label' );
 			$actionk_city = get_sub_field( 'sp-actionkit-city' );
 			$actionk_city_label = get_sub_field( 'sp-actionkit-city-label' );
 			$actionk_phone = get_sub_field( 'sp-actionkit-phone' );
@@ -150,37 +149,37 @@ if (have_posts()) : while (have_posts()) : the_post();
 				<?php echo stripslashes($actionk_intro) ?>
 			</div>
 			<input type="hidden" name="page" value="<?=$akpage?>">
-			
+
 			<?php if ($actionk_name) { ?>
 				<div class="<?php echo $input_text_class; ?> name">
-					<input value="" id="actionk_name" type="text" name="name" placeholder="<?php echo ( $actionk_name_label ) ? $actionk_name_label : "Name";?>"/> 
-				</div>		
+					<input value="" id="actionk_name" type="text" name="name" placeholder="<?php echo ( $actionk_name_label ) ? $actionk_name_label : "Name";?>"/>
+				</div>
 			<?php } ?>
 				<div class="<?php echo $input_text_class; ?> email">
-					<input value="" id="actionk_email" type="text" name="email" placeholder="<?php echo ( $actionk_email_label ) ? $actionk_email_label : "Email";?>"/> 
+					<input value="" id="actionk_email" type="text" name="email" placeholder="<?php echo ( $actionk_email_label ) ? $actionk_email_label : "Email";?>"/>
 				</div>
 			<?php if ($actionk_city) { ?>
 				<div class="<?php echo $input_text_class; ?> city">
-					<input value="" id="actionk_city" type="text" name="city" placeholder="<?php echo ( $actionk_city_label ) ? $actionk_city_label : "City";?>"/> 
+					<input value="" id="actionk_city" type="text" name="city" placeholder="<?php echo ( $actionk_city_label ) ? $actionk_city_label : "City";?>"/>
 				</div>
 			<?php }; ?>
 			<?php if ($actionk_postal) { ?>
 				<div class="<?php echo $input_text_class; ?> postal">
-					<input value="" id="actionk_postal" type="text" name="postal" placeholder="<?php echo ( $actionk_postal_label ) ? $actionk_postal_label : "Postal";?>"/> 
+					<input value="" id="actionk_postal" type="text" name="postal" placeholder="<?php echo ( $actionk_postal_label ) ? $actionk_postal_label : "Postal";?>"/>
 				</div>
 			<?php }; ?>
 			<?php if ($actionk_zip) { ?>
 				<div class="<?php echo $input_text_class; ?> zip">
-					<input value="" id="actionk_zip" type="text" name="zip" placeholder="<?php echo ( $actionk_zip_label ) ? $actionk_zip_label : "Zip";?>"/> 
+					<input value="" id="actionk_zip" type="text" name="zip" placeholder="<?php echo ( $actionk_zip_label ) ? $actionk_zip_label : "Zip";?>"/>
 				</div>
 			<?php }; ?>
 			<?php if ($actionk_phone) { ?>
 				<div class="<?php echo $input_text_class; ?> phone">
-					<input value="" id="actionk_phone" type="text" name="phone" placeholder="<?php echo ( $actionk_phone_label ) ? $actionk_phone_label : "Phone";?>" /> 
+					<input value="" id="actionk_phone" type="text" name="phone" placeholder="<?php echo ( $actionk_phone_label ) ? $actionk_phone_label : "Phone";?>" />
 				</div>
 			<?php }; ?>
 			<div class="<?php echo $input_select_class; ?> country">
-		
+
 			<select class="country" name="country" id="actionk_country" title="<?php echo ( $actionk_country_label ) ? $actionk_country_label : "Select Country";?>" >
 			<option selected><?php echo ( $actionk_country_label ) ? $actionk_country_label : "Select Country";?></option>
 			<option>United States</option>
@@ -437,20 +436,20 @@ if (have_posts()) : while (have_posts()) : the_post();
 		<div id="signup-replacement" style="display: none;">
 			<p><?php echo stripslashes($actionk_confirm) ?></p>
 		</div>
-		<script src="http://act.350.org/samples/widget.js"></script>
+		<script src="https://act.350.org/samples/widget.js"></script>
 		<br class="clear">
 				</div>
 				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
-			</div>			
+			</div>
 		<?php elseif(get_row_layout() == "sp-section-posts") : ?>
-			<?php 
+			<?php
 				$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 				$showposts = get_sub_field('sp-posts-num');
 				$catslug = get_sub_field('sp-posts-cat');
 				$posts_args = array(
 					'posts_per_page'=> $showposts,
 					'category_name' => $catslug,
-					'paged' => $paged, 
+					'paged' => $paged,
 				);
 				$posts_query = new WP_query($posts_args);
 			?>
@@ -458,7 +457,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 			<div id="blog" <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section posts <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<div id="blog-inner" class="section-inner posts-inner">
 					<h3 class="section-title"><?php echo get_sub_field('sp-section-title'); ?></h3>
-					<?php 
+					<?php
 						while ($posts_query->have_posts()) : $posts_query->the_post();
 							get_template_part('content','post');
 						endwhile;
@@ -472,12 +471,12 @@ if (have_posts()) : while (have_posts()) : the_post();
 			<?php endif; ?>
 		<?php elseif(get_row_layout() == "sp-section-grid") : ?>
 			<?php $columns = get_sub_field('grid-square-columns'); ?>
-			<?php 
+			<?php
 				if( have_rows('grid-square') ): ?>
 				<div id="<?php echo $id; ?>" <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section img-grid <?php echo $classes; ?>">
 					<div class="section-inner img-grid-inner">
 				    <?php while ( have_rows('grid-square') ) : the_row(); ?>
-					<?php 
+					<?php
 						$attachment_id = get_sub_field('grid-square-img');
 						$size = "grid-square"; // (thumbnail, medium, large, full or custom size)
 						$grid_img = wp_get_attachment_image_src($attachment_id, $size );
@@ -486,7 +485,7 @@ if (have_posts()) : while (have_posts()) : the_post();
 					<div class="img-grid-square <?php echo $columns; ?>">
 				    	<a rel="image_grid" href="<?php ( the_sub_field('grid-square-link') ) ? the_sub_field('grid-square-link') : $grid_img_full[0]; ?>" class="<?php echo ( the_sub_field('grid-square-link') == '' ) ? "fancybox": ''; ?>">
 				    		<span class="img-grid-square-img">
-				    			
+
 								<img data-src="<?php echo $grid_img[0] ?>" class="lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/>
 								<noscript>
 									<img class="img-grid-square-nojs-image" src="<?php echo $grid_img[0] ?>"/>
@@ -506,41 +505,40 @@ if (have_posts()) : while (have_posts()) : the_post();
 					</div>
 					<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
 				</div>
-				<?php 
+				<?php
 				else :
 				 // no rows found
 				endif;
 			?>
 
 		<?php elseif(get_row_layout() == "sp-section-nav") : ?>
-		
+
 			<nav <?php spBgImg($bg_attachment_id, $bg_img_attach); ?> class="section nav <?php echo $classes; ?>" id="<?php echo $id; ?>">
 				<div class="section-inner nav-inner">
-				<?php 
-					$navslug = get_sub_field("sp-section-navslug"); 
+				<?php
+					$navslug = get_sub_field("sp-section-navslug");
 					wp_nav_menu(array(
-						'menu' => $navslug,	
+						'menu' => $navslug,
 						'fallback_cb' => '',
 					));
 				?>
 				</div>
 				<?php spBgImgCredit($bg_img_credit, $bg_img_credit_url); ?>
 			</nav>
-		
-		<?php endif; ?>
-		
-	<?php 
-	
-	endwhile;
-	
-	endif; // end ACF flex field loop
-	
-	?>
-	
-</section>
 
-<?php 
-} else { 
+		<?php endif; ?>
+
+	<?php
+
+	endwhile;
+
+	endif; // end ACF flex field loop
+
+	?>
+
+
+<?php
+} else {
 // if password protect is enabled, get the pw form ?>
 		<section id="content" class="box-white section">
 			<div class="section-inner">
@@ -551,8 +549,8 @@ if (have_posts()) : while (have_posts()) : the_post();
 		</section>
 <?php }
 
-endwhile; 
+endwhile;
 
 endif; // end WP post loop
 
-get_footer(); 
+get_footer();

@@ -18,7 +18,7 @@ require ( SP_PLUGIN_CLASS_DIR . 'advanced_fields.php' );
 class SuperPages_Class {
 
 	public function __construct() {
-		
+
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_superpages_style' ) );
 		add_action( 'init', array ( $this, 'add_superpage_type' ) );
 		add_filter( 'single_template', array( $this, 'sp_single_template' ) );
@@ -26,13 +26,13 @@ class SuperPages_Class {
 		//add_action( 'init', array( $this, 'df_custom_rewrite_rule' ) );
 		// older permalink hooks
 		add_filter( 'post_type_link',  array( $this, 'custom_remove_cpt_slug_two'), 10, 2 );
-		add_action( 'pre_get_posts', array( $this, 'custom_parse_request_tricksy_two' ) );		
-		add_action( 'wp_head', array( $this, 'into_head' ) );	
+		add_action( 'pre_get_posts', array( $this, 'custom_parse_request_tricksy_two' ) );
+		add_action( 'wp_head', array( $this, 'into_head' ) );
 		add_action( 'init', array( $this, 'create_superpage_taxonomies') , 0 );
 		add_action( 'init', array( $this, 'add_homepage_display_location') , 0 );
-		
+
 	}
-	
+
 	public function enqueue_superpages_style(){
 		global $post;
 		if ($post->post_type == "super_pages"){
@@ -40,19 +40,19 @@ class SuperPages_Class {
 			wp_enqueue_script('jquery');
 			wp_enqueue_style( 'baseline', $superpages_plugin_directory . 'css/style.css');
 			wp_enqueue_style( 'superpage-legacy', $superpages_plugin_directory . 'css/superpage-legacy.css');
-			wp_enqueue_style( 'superpages-lightbox-css', $superpages_plugin_directory . 'source/jquery.fancybox.css');				
-			wp_enqueue_script( 'superpages-lightbox-js', $superpages_plugin_directory . 'source/jquery.fancybox.pack.js');	
+			wp_enqueue_style( 'superpages-lightbox-css', $superpages_plugin_directory . 'source/jquery.fancybox.css');
+			wp_enqueue_script( 'superpages-lightbox-js', $superpages_plugin_directory . 'source/jquery.fancybox.pack.js');
 			wp_enqueue_script( 'superpages-blazy-js', $superpages_plugin_directory . 'source/blazy.js');
 		}
 	}
-	
-	
+
+
 	//Fancybox OR Lightbox for Image Grid
 	public function into_head(){
 		global $post;
 		if ($post->post_type == "super_pages"){
 		?>
-		
+
 			 <script type="text/javascript">
 				jQuery(document).ready(function() {
 					var bLazy = new Blazy({
@@ -83,8 +83,8 @@ class SuperPages_Class {
 				});
 			</script>
 		<?php }
-	}			
-	
+	}
+
 	/**
 	* Register a Feature Template post type.
 	*
@@ -125,10 +125,10 @@ class SuperPages_Class {
 			'menu_icon'			 => 'dashicons-align-center',
 			'menu_position'      => null,
 			'supports'			 => array('title', 'custom-fields', 'revisions'),
-			'taxonomies'		 => array( 'display-location')
+			'taxonomies'		 => array( 'display-location', 'category')
 		);
 
-		register_post_type( 'super_pages', $args );	
+		register_post_type( 'super_pages', $args );
 
 	}
 	// Create superpage taxonomies
@@ -173,37 +173,37 @@ function add_homepage_display_location(){
 	wp_insert_term( 'Homepage', 'display-location', array('description'=> 'Display this content on the homepage. If more than one superpage is marked, the newer one is displayed.','slug' => 'homepage'));
 }
 
-	
+
 	public function sp_single_template( $single ) {
-	
+
 		global $post;
 
 		/* Checks for single template by post type */
 		if ($post->post_type == "super_pages"){
 
 			if( file_exists( SP_PLUGIN_CLASS_DIR. 'single-super_pages.php' ) )
-		
+
 			return SP_PLUGIN_CLASS_DIR . 'single-super_pages.php';
-		
+
 		}
-		
+
 			return $single;
-		
+
 	}
-	
+
 
 	/* ****** This is Wali's permalink code — breaks all non-superpage permalinks ******
 	  Remove the slug from published post permalinks.
-	  
-	public function df_custom_post_type_link( $post_link, $id = 0 ) {  
 
-		$post = get_post( $id );  
+	public function df_custom_post_type_link( $post_link, $id = 0 ) {
 
-		if ( is_wp_error( $post ) || 'super_pages' != $post->post_type || empty( $post->post_name ) )  
-        
-			return $post_link;  
+		$post = get_post( $id );
 
-		return home_url( user_trailingslashit( "$post->post_name" ) );  
+		if ( is_wp_error( $post ) || 'super_pages' != $post->post_type || empty( $post->post_name ) )
+
+			return $post_link;
+
+		return home_url( user_trailingslashit( "$post->post_name" ) );
 	}
 	*/
 
@@ -213,9 +213,9 @@ function add_homepage_display_location(){
 	 * Typically core only accounts for posts and pages where the slug is /post-name/
 	 *
 	public function df_custom_rewrite_rule() {
-    
+
 		add_rewrite_rule( '(.*?)$', 'index.php?super_pages=$matches[1]', 'top' );
-	
+
 	}
 
 	// ********* Original, older permalink rewrite code
@@ -227,7 +227,7 @@ function add_homepage_display_location(){
 	 * Remove the slug from published post permalinks.
 	 */
 	function custom_remove_cpt_slug_two( $post_link, $post ) {
-	 
+
 	    if ( 'super_pages' != $post->post_type || 'publish' != $post->post_status ) {
 	        return $post_link;
 	    }
@@ -237,10 +237,10 @@ function add_homepage_display_location(){
 		//$blog_path = substr($raw_blog_path, 1, -1);
 	    //$post_link = str_replace( $raw_blog_path . $post->post_type . '/', $raw_blog_path , $post_link );
 		$post_link = str_replace( '/' . $post->post_type . '/', '/' , $post_link );
-	 
-	    return $post_link; 
+
+	    return $post_link;
 	}
-	
+
 
 	/**
 	 * Some hackery to have WordPress match postname to any of our public post types
@@ -248,52 +248,52 @@ function add_homepage_display_location(){
 	 * Typically core only accounts for posts and pages where the slug is /post-name/
 	 */
 	function custom_parse_request_tricksy_two( $query ) {
-	 
+
 	    // Only noop the main query
 	    if ( ! $query->is_main_query() )
 	        return;
-	 
+
 	    // Only noop our very specific rewrite rule match
 	    if ( 2 != count( $query->query ) || ! isset( $query->query['page'] ) ) {
 	        return;
 	    }
-	 
+
 	    // 'name' will be set if post permalinks are just post_name, otherwise the page rule will match
 	    if ( ! empty( $query->query['name'] ) ) {
 	        $query->set( 'post_type', array( 'post', 'super_pages', 'page' ) );
 	    }
 	}
 
-	
+
 }
 $SuperPages = new SuperPages_Class();
 
 //Shortcode for Count down
-add_shortcode( 'sp-countdown', 'sp_counter_shortcode');	
+add_shortcode( 'sp-countdown', 'sp_counter_shortcode');
 function sp_counter_shortcode($atts, $content=null){
-	
+
 	$atts_array = shortcode_atts(array(
 	 'date' => '',
 	 'width' => ''
 	),$atts);
-	
+
 	//Enqueueing the Actual JS for Countdown When shortcode is rendered only
 	$superpages_plugin_directory = plugin_dir_url( __FILE__ );
 	wp_enqueue_script( 'superpages-counter-js', $superpages_plugin_directory . 'source/jquery.countdown.js');
 	wp_enqueue_style( 'superpages-counter-css', $superpages_plugin_directory . 'css/jquery.countdown.css');
 	wp_enqueue_script( 'superpages-counter-active-js', $superpages_plugin_directory . 'source/counter-active.js');
 	wp_localize_script('superpages-counter-active-js','counter_atts',$atts_array);
-	
+
 ob_start();
 
 ?>
 <div class="countdownHolder" style="width:<?php echo $atts['width']; ?>;">
 <span id="clock"></span>
 <input type="hidden" name="spcd_date" id="spcd_date" value="<?php echo $atts['date']; ?>">
-</div>	
+</div>
 <?php
 
 $content = ob_get_clean();
 
 return $content;
-}	
+}
